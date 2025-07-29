@@ -9,7 +9,7 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 export default function Login() {
     const router = useRouter();
     const [formData, setFormData] = useState({ email: "", password: "" });
-    const [role, setRole] = useState("student");
+    const [role, setRole] = useState("teacher");
     const [errors, setErrors] = useState({});
     const [isLoading, setIsLoading] = useState(false);
     const [backendError, setBackendError] = useState("");

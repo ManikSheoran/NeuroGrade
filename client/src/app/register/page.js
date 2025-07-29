@@ -11,7 +11,7 @@ export default function Register() {
         password: "",
         roll: "",
     });
-    const [role, setRole] = useState("student"); 
+    const [role, setRole] = useState("teacher"); 
     const [errors, setErrors] = useState({});
     const [isLoading, setIsLoading] = useState(false);
     const [backendError, setBackendError] = useState("");
