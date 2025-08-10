@@ -60,7 +60,7 @@ const loginTeacher = asyncHandler(async (req, res) => {
         res.cookie("teacher_id", teacher._id.toString(), {
             httpOnly: true,
             secure: true,
-            sameSite: "lax",
+            sameSite: "none",
             maxAge: 24 * 60 * 60 * 1000
         });
         res.status(200).json({ message: "Teacher login successful" });
