@@ -26,7 +26,7 @@ mongoose.connect(process.env.MONGO_URI, {
 });
 
 const corsOptions = {
-    origin: ["https://www.neurograde.app", "https://neurograde.app", "http://localhost:3000"],
+    origin: ["https://www.neurograde.app", "https://neurograde.app", "http://localhost:3000", "*"],
     methods: ["GET", "POST"],
     allowedHeaders: ["Content-Type", "Authorization"],
     exposedHeaders: ["set-cookie"],
