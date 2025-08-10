@@ -8,9 +8,10 @@ import { useAuth } from "@/context/AuthContext";
 import Switch from "@mui/material/Switch";
 import { useDarkMode } from "@/context/DarkModeContext";
 import { useUser } from "@/context/UserContext";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 const Header = () => {
+  const router = useRouter();
   const { loggedIn, setLoggedIn } = useAuth();
   const [menuOpen, setMenuOpen] = useState(false);
   const { darkMode, setDarkMode } = useDarkMode();
@@ -51,6 +52,7 @@ const Header = () => {
       if (response.ok) {
         setLoggedIn(false);
         setUser({});
+        router.push("/");
       } else {
         console.error("Error logging out:", response.statusText);
       }
