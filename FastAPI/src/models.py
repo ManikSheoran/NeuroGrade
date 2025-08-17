@@ -1,9 +1,9 @@
-from pydantic import BaseModel, EmailStr, Field
+from pydantic import BaseModel, Field
 from typing import List, Optional, Dict, Any
 
 class TeacherModel(BaseModel):
     id: str = Field(..., alias="_id")
-    email: EmailStr
+    email: str
     name: str
     subject:str
     students: Optional[list] = []
@@ -13,7 +13,7 @@ class TeacherModel(BaseModel):
 
 class StudentModel(BaseModel):
     id: str = Field(..., alias="_id")
-    email: EmailStr
+    email: str
     name: str
     roll: str
     feedback: Optional[list] = []

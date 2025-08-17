@@ -63,7 +63,7 @@ def add_chat_entry(stud_roll: str, query: str, answer: str):
         {
             "$push": {
                 "chats": {
-                    "$each": [chat_entry.dict()],
+                    "$each": [chat_entry.model_dump()],
                     "$slice": -10  # Keeps the last 10 entries
                 }
             }

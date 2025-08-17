@@ -93,7 +93,7 @@ def schedule_meeting(subject: str, student_roll: str, start_time: str = None, en
 # --- DOUBT AGENT WITH LANGGRAPH ---
 class DoubtAgent:
     def __init__(self, api_key: str, student_roll: str, chat_history: List[ChatEntry]):
-        self.model = ChatGoogleGenerativeAI(api_key=api_key, model='models/gemini-2.0-flash')
+        self.model = ChatGoogleGenerativeAI(api_key=api_key, model='models/gemini-1.5-flash')
         self.student_roll = student_roll
         self.chat_history = chat_history
 
