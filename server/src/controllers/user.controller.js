@@ -95,22 +95,18 @@ const fetchTeacherData = asyncHandler(async (req, res) => {
 // TEACHER: ADD STUDENT
 const addStudentToTeacher = asyncHandler(async (req, res) => {
     const teacherId = req.cookies.teacher_id;
-    const { name, sid } = req.body; 
+    const { name, email, roll } = req.body; 
     if (!teacherId) return res.status(401).json({ error: "Unauthorized" });
 
-    // Find existing student by name and roll (sid)
-    const student = await Student.findOne({ name, roll: sid });
-    if (!student) {
-        return res.status(404).json({ error: "Student not found. Please check the name and student ID." });
+    const existing = await Student.findOne({ email });
+    if (existing) {
+        return res.status(400).json({ error: "Student already exists" });
     }
+    const student = new Student({ name, email, roll, feedback: [] }); 
+    await student.save();
 
-    // Check if student is already added to this teacher
+    // Add to teacher's students
     const teacher = await Teacher.findById(teacherId);
-    if (teacher.students.includes(student._id)) {
-        return res.status(400).json({ error: "Student is already added to your class" });
-    }
-
-    // Add student to teacher's students list
     teacher.students.push(student._id);
     await teacher.save();
 
