@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { ChevronUp } from "lucide-react";
 import { FiMessageSquare, FiMail, FiMapPin } from "react-icons/fi"; 
 import Header from "../components/elements/Header";
+import Chatbot from "../components/Chatbot";
 import "./globals.css";
 import { AuthProvider, useAuth } from "@/context/AuthContext";
 import Background from "@/components/Background";
@@ -230,6 +231,9 @@ function ThemedLayout({ children }) {
                             </div>
                         </>
                     )}
+                    
+                    {/* Chatbot Component */}
+                    <Chatbot />
                 </div>
             </body>
         </>

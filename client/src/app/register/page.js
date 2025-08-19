@@ -10,6 +10,7 @@ export default function Register() {
         email: "",
         password: "",
         roll: "",
+        subject: "",
     });
     const [role, setRole] = useState("teacher"); 
     const [errors, setErrors] = useState({});
@@ -43,6 +44,9 @@ export default function Register() {
         if (role === "student" && !formData.roll) {
             newErrors.roll = "Roll number is required";
         }
+        if (role === "teacher" && !formData.subject) {
+            newErrors.subject = "Subject is required";
+        }
         return newErrors;
     };
 
@@ -70,7 +74,7 @@ export default function Register() {
         const payload =
             role === "student"
                 ? { name: formData.name, email: formData.email, password: formData.password, roll: formData.roll }
-                : { name: formData.name, email: formData.email, password: formData.password };
+                : { name: formData.name, email: formData.email, password: formData.password, subject: formData.subject };
 
         try {
             const response = await fetch(endpoint, {
@@ -182,6 +186,39 @@ export default function Register() {
                                 </div>
                                 {errors.email && <p className="text-red-500 text-sm mt-1 ml-1">{errors.email}</p>}
                             </div>
+
+                            {role === "teacher" && (
+                                <div className="space-y-1">
+                                    <label className="text-sm font-medium text-gray-700 dark:text-gray-300 ml-1">Subject</label>
+                                    <div className="relative">
+                                        <select
+                                            name="subject"
+                                            value={formData.subject}
+                                            onChange={handleChange}
+                                            required={role === "teacher"}
+                                            className={`block w-full pl-4 pr-10 py-3 bg-gray-50 dark:bg-gray-700 border rounded-xl text-gray-800 dark:text-gray-200 focus:outline-none focus:ring-2 transition-all duration-200 ${
+                                                errors.subject 
+                                                    ? "border-red-500 focus:ring-red-200 dark:focus:ring-red-900" 
+                                                    : "border-gray-200 dark:border-gray-600 focus:border-[#1D2F6F] focus:ring-[#1D2F6F]/20 dark:focus:border-[#FAC748] dark:focus:ring-[#FAC748]/20"
+                                            }`}
+                                        >
+                                            <option value="">Select a subject</option>
+                                            <option value="Mathematics">Mathematics</option>
+                                            <option value="Physics">Physics</option>
+                                            <option value="Chemistry">Chemistry</option>
+                                            <option value="Biology">Biology</option>
+                                            <option value="Computer Science">Computer Science</option>
+                                            <option value="English">English</option>
+                                            <option value="History">History</option>
+                                            <option value="Geography">Geography</option>
+                                            <option value="Economics">Economics</option>
+                                            <option value="Political Science">Political Science</option>
+                                        </select>
+                                        {errors.subject && <span className="absolute right-3 top-3 text-red-500">!</span>}
+                                    </div>
+                                    {errors.subject && <p className="text-red-500 text-sm mt-1 ml-1">{errors.subject}</p>}
+                                </div>
+                            )}
 
                             {role === "student" && (
                                 <div className="space-y-1">
