@@ -1,7 +1,13 @@
 from pymongo import MongoClient
 from dotenv import load_dotenv
 import os
+import dns.resolver
+
 load_dotenv()
+
+# Configure DNS resolver to use Google DNS for better reliability
+dns.resolver.default_resolver = dns.resolver.Resolver(configure=False)
+dns.resolver.default_resolver.nameservers = ['8.8.8.8', '8.8.4.4']
 
 MONGO_URI = os.getenv('MONGO_URI')
 
