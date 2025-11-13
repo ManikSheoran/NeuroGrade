@@ -100,7 +100,7 @@ const StudentForm = () => {
                     <button
                         type="submit"
                         disabled={isSubmitting}
-                        className={`w-full py-3 text-white text-[#1D2F6F] font-bold rounded-lg hover:bg-[#fadf9d] bg-[#FAC748] transition duration-300 ${
+                        className={`w-full py-3 text-[#1D2F6F] font-bold rounded-lg hover:bg-[#fadf9d] bg-[#FAC748] transition duration-300 ${
                             isSubmitting ? "opacity-50 cursor-not-allowed" : ""
                         }`}
                     >
