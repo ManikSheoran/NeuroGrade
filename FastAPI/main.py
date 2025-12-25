@@ -18,6 +18,11 @@ import os
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
 app = FastAPI()
 
+# Health check endpoint
+@app.get("/health")
+async def health_check():
+    return {"status": "healthy", "service": "NeuroGrade FastAPI"}
+
 # Add CORS middleware
 app.add_middleware(
     CORSMiddleware,
@@ -30,10 +35,6 @@ app.add_middleware(
 @app.get("/")
 def read_root():
     return {"message": "NeuroGrade Chat API is running"}
-
-@app.get("/health")
-def health_check():
-    return {"status": "healthy", "service": "chat-api"}
 
 @app.get("/teachers", response_model=List[TeacherModel])
 def read_teachers():
