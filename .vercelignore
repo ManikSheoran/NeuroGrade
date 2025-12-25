@@ -1,0 +1,17 @@
+# Exclude other services from Vercel deployment
+server/
+FastAPI/
+.github/
+docker-compose.yml
+**/Dockerfile
+**/.dockerignore
+railway.yml
+
+# Standard ignores
+node_modules
+.next
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+*.log

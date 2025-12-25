@@ -1,0 +1,13 @@
+{
+  "version": 2,
+  "name": "neurograde",
+  "buildCommand": "cd client && npm run build",
+  "outputDirectory": "client/.next",
+  "framework": "nextjs",
+  "rootDirectory": "client",
+  "installCommand": "cd client && npm install --legacy-peer-deps",
+  "env": {
+    "NODE_ENV": "production",
+    "NEXT_TELEMETRY_DISABLED": "1"
+  }
+}

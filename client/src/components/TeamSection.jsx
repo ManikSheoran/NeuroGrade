@@ -5,6 +5,7 @@ import arunavaImg from "../TeamImages/Arunava.jpg";
 import manikImg from "../TeamImages/Manik.jpg";
 import harshImg from "../TeamImages/Harsh.jpg";
 import amriteshImg from "../TeamImages/Amritesh.jpg";
+import deepImg from "../TeamImages/Deep.jpg";
 
 export default function TeamSection() {
   const teamMembers = [
@@ -40,6 +41,14 @@ export default function TeamSection() {
       instagram: "https://www.instagram.com/amritesh_kr24/",
       linkedin: "https://www.linkedin.com/in/amritesh-kumar-773b9929a/",
     },
+    {
+      name: "Deep Sutariya",
+      role: "Backend & AI/Data Specialist",
+      bio: "Deep builds robust backends and intelligent data systems that power seamless applications. From scalable APIs to AI-driven pipelines, he ensures products run efficiently and deliver real impact.",
+      image: deepImg,
+      instagram: "", // Leave empty since you didn't provide Instagram
+      linkedin: "https://www.linkedin.com/in/deep-sutariya-831a31253/",
+    },
   ];
 
   return (
@@ -71,14 +80,16 @@ export default function TeamSection() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end">
                   <div className="p-4 w-full flex justify-end space-x-2">
-                    <a
-                      href={member.instagram}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="bg-white/20 backdrop-blur-sm p-2 rounded-full hover:bg-red-500 transition-colors duration-300"
-                    >
-                      <FaInstagram size={20} className="text-white" />
-                    </a>
+                    {member.instagram && (
+                      <a
+                        href={member.instagram}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="bg-white/20 backdrop-blur-sm p-2 rounded-full hover:bg-red-500 transition-colors duration-300"
+                      >
+                        <FaInstagram size={20} className="text-white" />
+                      </a>
+                    )}
                     <a
                       href={member.linkedin}
                       target="_blank"

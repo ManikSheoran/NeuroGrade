@@ -1,0 +1,75 @@
+version: '3.8'
+
+services:
+  # FastAPI Service
+  fastapi:
+    build:
+      context: ./FastAPI
+      dockerfile: Dockerfile
+    ports:
+      - "8000:8000"
+    environment:
+      - MONGO_URI=${MONGO_URI}
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+    volumes:
+      - ./FastAPI:/app
+    depends_on:
+      - mongodb
+    networks:
+      - app-network
+
+  # Express.js Server
+  server:
+    build:
+      context: ./server
+      dockerfile: Dockerfile
+    ports:
+      - "8001:8000"
+    environment:
+      - MONGODB_URI=${MONGO_URI}
+      - NODE_ENV=production
+    volumes:
+      - ./server:/app
+      - /app/node_modules
+    depends_on:
+      - mongodb
+    networks:
+      - app-network
+
+  # Next.js Client
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - NEXT_PUBLIC_API_URL=http://server:8000
+      - NEXT_PUBLIC_FASTAPI_URL=http://fastapi:8000
+    depends_on:
+      - server
+      - fastapi
+    networks:
+      - app-network
+
+  # MongoDB (for local development)
+  mongodb:
+    image: mongo:7
+    ports:
+      - "27017:27017"
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=password
+      - MONGO_INITDB_DATABASE=neurograde
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - app-network
+
+volumes:
+  mongodb_data:
+
+networks:
+  app-network:
+    driver: bridge
